@@ -1,0 +1,13 @@
+﻿::deep .my-form-layout {
+    width: 680px;
+}
+
+::deep .btn-icon {
+    background-image: url("/icons/expand.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+::deep .revert-icon {
+    transform: rotate(180deg);
+}

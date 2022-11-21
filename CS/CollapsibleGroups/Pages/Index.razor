@@ -1,0 +1,95 @@
+﻿@page "/"
+
+@using System.ComponentModel.DataAnnotations;
+
+<EditForm Model="@userData"
+          Context="EditFormContext"
+          OnInvalidSubmit="@HandleInvalidSubmit">
+    <DataAnnotationsValidator />
+    <div>
+        <DxFormLayout CssClass="my-form-layout" ItemCaptionAlignment="ItemCaptionAlignment.All">
+            <DxFormLayoutGroup Caption="Personal Information"
+                               ExpandButtonDisplayMode="GroupExpandButtonDisplayMode.End"
+                               @bind-Expanded="@PersonalExpanded"
+                               ExpandButtonIconCssClass="btn-icon"
+                               CollapseButtonIconCssClass="btn-icon revert-icon">
+                <DxFormLayoutItem Caption="First Name:" ColSpanMd="12">
+                    <DxTextBox @bind-Text="@userData.FirstName" />
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Last Name:" ColSpanMd="12">
+                    <DxTextBox @bind-Text="@userData.LastName" />
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Age:" ColSpanMd="12">
+                    <DxSpinEdit @bind-Value="@userData.Age" MinValue="0"></DxSpinEdit>
+                </DxFormLayoutItem>
+            </DxFormLayoutGroup>
+            <DxFormLayoutGroup Caption="Work Information"
+                               ExpandButtonDisplayMode="GroupExpandButtonDisplayMode.End"
+                               @bind-Expanded="@WorkExpanded"
+                               ExpandButtonIconCssClass="btn-icon"
+                               CollapseButtonIconCssClass="btn-icon revert-icon">
+                <DxFormLayoutItem Caption="Company Name:" ColSpanMd="12">
+                    <DxTextBox @bind-Text="@userData.CompanyName" />
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Industry:" ColSpanMd="12">
+                    <DxSpinEdit @bind-Value="@userData.Industry"></DxSpinEdit>
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Position:" ColSpanMd="12">
+                    <DxTextBox @bind-Text="@userData.Position" />
+                </DxFormLayoutItem>
+            </DxFormLayoutGroup>
+            <DxFormLayoutGroup Caption="Contact Information"
+                               ExpandButtonDisplayMode="GroupExpandButtonDisplayMode.End"
+                               @bind-Expanded="@ContactExpanded"
+                               ExpandButtonIconCssClass="btn-icon"
+                               CollapseButtonIconCssClass="btn-icon revert-icon">
+                <DxFormLayoutItem Caption="Email:" ColSpanMd="12">
+                    <DxMaskedInput @bind-Value="@userData.Email"
+                                   Mask="@EmailMask"
+                                   MaskMode="MaskMode.RegEx">
+                        <DxRegExMaskProperties InvalidInputNotificationText="Email is invalid" />
+                    </DxMaskedInput>
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Phone Number:" ColSpanMd="12">
+                    <DxMaskedInput @bind-Value="@userData.PhoneNumber"
+                                   Mask="(999)000-0000">
+                        <DxTextMaskProperties InvalidInputNotificationText="Phone number is invalid"></DxTextMaskProperties>
+                    </DxMaskedInput>
+                </DxFormLayoutItem>
+            </DxFormLayoutGroup>
+            <DxFormLayoutItem ColSpanMd="12">
+                <ValidationSummary />
+            </DxFormLayoutItem>
+        </DxFormLayout>
+    </div>
+    <DxButton Text="Submit" SubmitFormOnClick="true"></DxButton>
+</EditForm>
+
+@code {
+    bool PersonalExpanded { get; set; } = true;
+    bool WorkExpanded { get; set; } = false;
+    bool ContactExpanded { get; set; } = false;
+    void HandleInvalidSubmit(EditContext editContext) {
+        PersonalExpanded = true;
+        WorkExpanded = true;
+        ContactExpanded = true;
+    }
+    string EmailMask { get; set; } = @"(\w|[.-])+@(\w|-)+\.(\w|-){2,4}";
+    UserObject userData = new UserObject();
+
+    public class UserObject {
+        public int Id { get; set; }
+        [Required]
+        public string? FirstName { get; set; }
+        [Required]
+        public string? LastName { get; set; }
+        [Range(18, 100000, ErrorMessage = "You must be older than 18 years")]
+        public int Age { get; set; }
+        [Required]
+        public string? CompanyName { get; set; }
+        public int Industry { get; set; }
+        public string? Position { get; set; }
+        public string? Email { get; set; }
+        public string? PhoneNumber { get; set; }
+    }
+}
