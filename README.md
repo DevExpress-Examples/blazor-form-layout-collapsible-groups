@@ -2,7 +2,7 @@
 
 This example demonstrates how to use the [DxFormLayout](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxFormLayout) component to implement collapsible groups.
 
-[Collapsible groups with validation](/form-layout-collapsible-groups.png)
+![Collapsible groups with validation](/form-layout-collapsible-groups.png)
 
 Use the [Expanded](http://docs.devexpress.com/Blazor/DevExpress.Blazor.DxFormLayoutGroup.Expanded) property to change the expand state and handle the [ExpandedChanged](http://docs.devexpress.com/Blazor/DevExpress.Blazor.DxFormLayoutGroup.ExpandedChanged) event to react to state changes. To allow users to expand and collapse groups from the UI, specify the [ExpandButtonDisplayMode](http://docs.devexpress.com/Blazor/DevExpress.Blazor.DxFormLayoutGroup.ExpandButtonDisplayMode) property. You can also specify the [ExpandButtonCssClass](http://docs.devexpress.com/Blazor/DevExpress.Blazor.DxFormLayoutGroup.ExpandButtonIconCssClass) and [CollapseButtonCssClass](http://docs.devexpress.com/Blazor/DevExpress.Blazor.DxFormLayoutGroup.CollapseButtonIconCssClass) properties to apply custom icons to the expand button. 
 
