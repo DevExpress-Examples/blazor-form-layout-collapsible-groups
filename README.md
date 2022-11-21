@@ -1,3 +1,6 @@
+<!-- default badges list -->
+[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
+<!-- default badges end -->
 # Form Layout for Blazor – Collapsible groups 
 
 This example demonstrates how to use the [DxFormLayout](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxFormLayout) component to implement collapsible groups.
