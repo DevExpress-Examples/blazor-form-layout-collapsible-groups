@@ -6,6 +6,8 @@
     background-image: url("/icons/expand.svg");
     background-repeat: no-repeat;
     background-position: center;
+    width: 16px;
+    height: 16px;
 }
 
 ::deep .revert-icon {
